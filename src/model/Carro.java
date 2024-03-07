@@ -1,15 +1,12 @@
 package model;
 
-public class Carro extends Vehiculo {
+public class Carro extends vehiculo{
     private String traccion;
 
-    // Constructor
-    public Carro(String marca, String modelo, String placa, int velocidadMaxima, String traccion) {
-        super(marca, modelo, placa, velocidadMaxima);
-        this.traccion = traccion;
+    public Carro(){
+        super();
     }
 
-    // Getter y Setter para traccion
     public String getTraccion() {
         return traccion;
     }
