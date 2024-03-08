@@ -1,11 +1,13 @@
 package model;
 
-public class moto extends Vehiculo {
+public class Moto extends Vehiculo {
     private String cilindraje;
 
-    public moto(){
+    public Moto(){
         super();
     }
+
+
 
     public String getCilindraje() {
         return cilindraje;
