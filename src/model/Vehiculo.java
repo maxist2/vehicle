@@ -1,11 +1,10 @@
 package model;
 
-public class vehiculo {
+public class Vehiculo {
     private String modelo;
     private String marca;
     private String placa;
     private int velocidad_maxima;
-
 
     public String getModelo() {
         return modelo;

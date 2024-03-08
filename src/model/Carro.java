@@ -1,6 +1,6 @@
 package model;
 
-public class Carro extends vehiculo{
+public class Carro extends Vehiculo{
     private String traccion;
 
     public Carro(){

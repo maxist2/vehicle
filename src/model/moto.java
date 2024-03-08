@@ -1,6 +1,6 @@
 package model;
 
-public class moto extends vehiculo {
+public class moto extends Vehiculo {
     private String cilindraje;
 
     public moto(){

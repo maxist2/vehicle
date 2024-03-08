@@ -1,11 +1,11 @@
 package service;
 
-import model.vehiculo;
+import model.Vehiculo;
 
 public interface Accion_vehiculo {
-    public void acelerar();
-    public void frenar();
-    public void estacionamiento();
-    public void direccion();
 
+    void estacionamiento(Vehiculo vehicle);
+    void direccion(Vehiculo vehicle);
+    void acelerar(Vehiculo vehicle);
+    void frenar(Vehiculo vehicle);
 }
