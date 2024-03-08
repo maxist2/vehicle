@@ -67,6 +67,23 @@ public class main {
     }
 
     public static void vender() {
+        Scanner scan_car = new Scanner(System.in);
+        System.out.println("Ingrese la placa del vehículo que desea vender: ");
+        String placa = scan_car.next();
+
+        for (int i = 0; i < vehiculo.size(); i++) {
+            if (i % 5 == 0) {
+                String currentPlaca = vehiculo.get(i);
+                if (currentPlaca.equals(placa)) {
+                    vehiculo.subList(i, i + 5).clear();
+                    System.out.println("Vehículo con placa " + placa + " eliminado del catálogo.");
+                    return;
+                }
+            }
+        }
+
+        System.out.println("No se encontró ningún vehículo con la placa " + placa + " en el catálogo.");
+
 
 
     }
