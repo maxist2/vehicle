@@ -111,6 +111,7 @@ public class main {
                     break;
                 case 3:
                     catalogo();
+                    break;
                 case 4:
                     System.exit(0);
                     break;
