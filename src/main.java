@@ -1,6 +1,7 @@
 import model.Carro;
 import model.Moto;
 import model.Vehiculo;
+import service.Prueba_Ruta;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -96,7 +97,53 @@ public class main {
 
         System.out.println("No se encontró ningún vehículo con la placa " + placa + " en el catálogo.");
     }
+    public static void prueba() {
+        Prueba_Ruta prueba = new Prueba_Ruta();
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Ingrese el tipo de vehículo (1 para carro, 2 para moto, o cualquier otro valor para salir): ");
+        int tipo = scanner.nextInt();
+        scanner.nextLine(); // consume the leftover newline character
+
+        String placa = "";
+        Vehiculo vehiculo = null;
+
+        switch (tipo) {
+            case 1:
+                System.out.println("Ingrese la placa del carro: ");
+                placa = scanner.nextLine();
+                for (Carro carro : carros) {
+                    if (carro.getPlaca().equals(placa)) {
+                        vehiculo = carro;
+                        break;
+                    }
+                }
+                break;
+            case 2:
+                System.out.println("Ingrese la placa de la moto: ");
+                placa = scanner.nextLine();
+                for (Moto moto : motos) {
+                    if (moto.getPlaca().equals(placa)) {
+                        vehiculo = moto;
+                        break;
+                    }
+                }
+                break;
+            default:
+                System.out.println("No se encontró ningún vehículo con la placa " + placa + " en el catálogo.");
+                return;
+        }
+
+        if (vehiculo != null) {
+            System.out.println("Seleccione una acción: \n1. Estacionar\n2. Dirigir\n3. Acelerar\n4. Frenar");
+
+                prueba.estacionamiento(vehiculo);
+                prueba.direccion(vehiculo);
+                prueba.acelerar(vehiculo);
+                prueba.frenar(vehiculo);
+
+            }
+        }
 
     public static void main(String[] args) {
         while (true) {
@@ -104,7 +151,8 @@ public class main {
                     "\n 1. Comprar" +
                     "\n 2. Vender" +
                     "\n 3. Catalogo" +
-                    "\n 4. Salir");
+                    "\n 4. hacer prueba" +
+                    "\n 5. Salir");
 
             Scanner scanner = new Scanner(System.in);
             System.out.println("Elige una opcion: ");
@@ -130,6 +178,9 @@ public class main {
                     catalogo();
                     break;
                 case 4:
+                    prueba();
+                    break;
+                case 5:
                     System.exit(0);
                     break;
                 default:
@@ -138,5 +189,4 @@ public class main {
             }
         }
     }
-
 }
