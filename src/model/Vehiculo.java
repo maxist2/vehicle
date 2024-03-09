@@ -6,6 +6,13 @@ public class Vehiculo {
     private String placa;
     private int velocidad_maxima;
 
+    public Vehiculo(String modelo, String marca, String placa, int velocidad_maxima) {
+        this.modelo = modelo;
+        this.marca = marca;
+        this.placa = placa;
+        this.velocidad_maxima = velocidad_maxima;
+    }
+
     public String getModelo() {
         return modelo;
     }

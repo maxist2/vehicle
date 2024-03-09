@@ -1,119 +1,110 @@
 import model.Carro;
 import model.Moto;
+import model.Vehiculo;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class main {
 
-
-
-    static ArrayList<String> vehiculo = new ArrayList<>();
-    static Scanner scan_car = new Scanner(System.in);
+    static ArrayList<Carro> carros = new ArrayList<>();
+    static ArrayList<Moto> motos = new ArrayList<>();
+    static Scanner scanner = new Scanner(System.in);
 
     public static void agregarCarro() {
 
 
-        Carro carro = new Carro();
         System.out.println("Ingrese la marca del carro: ");
-        carro.setMarca(scan_car.next());
+        String marca = scanner.next();
         System.out.println("Ingrese el modelo del carro: ");
-        carro.setModelo(scan_car.next());
+        String modelo = scanner.next();
         System.out.println("Ingrese la placa del carro: ");
-        carro.setPlaca(scan_car.next());
+        String placa = scanner.next();
         System.out.println("Ingrese la velocidad maxima del carro: ");
-        carro.setVelocidad_maxima(scan_car.nextInt());
+        int velocidad_maxima = scanner.nextInt();
         System.out.println("Ingrese la traccion del carro: ");
-        carro.setTraccion(scan_car.next());
+        String traccion = scanner.next();
 
-        vehiculo.add(carro.getMarca());
-        vehiculo.add(carro.getModelo());
-        vehiculo.add(carro.getPlaca());
-        vehiculo.add(Integer.toString(carro.getVelocidad_maxima()));
-        vehiculo.add(carro.getTraccion());
+
+        Carro carro = new Carro(marca, modelo, placa, velocidad_maxima, traccion);
+        carros.add(carro);
 
         System.out.println("Carro agregado");
     }
 
     public static void agregarMoto() {
 
-        Moto moto = new Moto();
         System.out.println("Ingrese la marca de la moto: ");
-        moto.setMarca(scan_car.next());
+        String marca = scanner.next();
         System.out.println("Ingrese el modelo de la moto: ");
-        moto.setModelo(scan_car.next());
+        String modelo = scanner.next();
         System.out.println("Ingrese la placa de la moto: ");
-        moto.setPlaca(scan_car.next());
+        String placa = scanner.next();
         System.out.println("Ingrese la velocidad maxima de la moto: ");
-        moto.setVelocidad_maxima(scan_car.nextInt());
+        int velocidad_maxima = scanner.nextInt();
         System.out.println("Ingrese el cilindraje de la moto: ");
-        moto.setCilindraje(scan_car.next());
+        String cilindraje = scanner.next();
 
-        vehiculo.add(moto.getMarca());
-        vehiculo.add(moto.getModelo());
-        vehiculo.add(moto.getPlaca());
-        vehiculo.add(Integer.toString(moto.getVelocidad_maxima()));
-        vehiculo.add(moto.getCilindraje());
+        Moto moto = new Moto(marca, modelo, placa, velocidad_maxima, cilindraje);
+        motos.add(moto);
 
+        System.out.println("Moto agregada");
 
     }
-
     public static void catalogo() {
-        for (String catalogo : vehiculo) {
-            System.out.println(catalogo);
+        System.out.println("Listado de Carros:");
+        for (Carro carro : carros) {
+            System.out.println(carro);
+        }
+
+        System.out.println("Listado de Motos:");
+        for (Moto moto : motos) {
+            System.out.println(moto);
         }
     }
 
     public static void vender() {
-        Scanner scan_car = new Scanner(System.in);
-        System.out.println("Ingrese la placa del vehículo que desea vender: ");
-        String placa = scan_car.next();
+        System.out.println("Ingrese el tipo de vehículo que desea vender (1 para carro, 2 para moto): ");
+        int tipo = scanner.nextInt();
 
-        for (int i = 0; i < vehiculo.size(); i++) {
-            if (i % 5 == 0) {
-                String currentPlaca = vehiculo.get(i);
-                if (currentPlaca.equals(placa)) {
-                    vehiculo.subList(i, i + 5).clear();
-                    System.out.println("Vehículo con placa " + placa + " eliminado del catálogo.");
-                    return;
+        System.out.println("Ingrese la placa del vehículo que desea vender: ");
+        String placa = scanner.next();
+
+        switch (tipo) {
+            case 1:
+                for (int i = 0; i < carros.size(); i++) {
+                    if (carros.get(i).getPlaca().equals(placa)) {
+                        carros.remove(i);
+                        System.out.println("Carro con placa " + placa + " eliminado del catálogo");
+                        return;
+                    }
                 }
-            }
+                break;
+            case 2:
+                for (int i = 0; i < motos.size(); i++) {
+                    if (motos.get(i).getPlaca().equals(placa)) {
+                        motos.remove(i);
+                        System.out.println("Moto con placa " + placa + " eliminada del catálogo");
+                        return;
+                    }
+                }
+                break;
+            default:
+                System.out.println("Tipo de vehículo inválido.");
+                return;
         }
 
         System.out.println("No se encontró ningún vehículo con la placa " + placa + " en el catálogo.");
-
-
-
     }
 
-    public static void comprar() {
-        Scanner scan_car = new Scanner(System.in);
-        System.out.println("1 carro\n2 moto");
-        System.out.println("Ingrese una opcion: ");
-        int num = scan_car.nextInt();
-        switch (num) {
-            case 1:
-                agregarCarro();
-                break;
-            case 2:
-                agregarMoto();
-                break;
-            default:
-                System.out.println("Opcion incorrecta");
-                break;
-        }
-
-    }
 
     public static void main(String[] args) {
         while (true) {
-            System.out.println("vienvendido al sistema de administracion" +
-                    "\n 1 comprar" +
-                    "\n 2 vender" +
-                    "\n 3 Catalogo" +
-                    "\n 4 salir");
+            System.out.println("Bienvenido al sistema de administracion" +
+                    "\n 1. Comprar" +
+                    "\n 2. Vender" +
+                    "\n 3. Catalogo" +
+                    "\n 4. Salir");
 
             Scanner scanner = new Scanner(System.in);
             System.out.println("Elige una opcion: ");
@@ -121,7 +112,16 @@ public class main {
 
             switch (num) {
                 case 1:
-                    comprar();
+                    System.out.println("Ingrese 1 para carro o 2 para moto: ");
+                    int opcion = scanner.nextInt();
+
+                    if (opcion == 1) {
+                        agregarCarro();
+                    } else if (opcion == 2) {
+                        agregarMoto();
+                    } else {
+                        System.out.println("Opcion incorrecta");
+                    }
                     break;
                 case 2:
                     vender();
@@ -137,8 +137,6 @@ public class main {
                     break;
             }
         }
-
-
     }
-}
 
+}
